@@ -4,8 +4,7 @@ import {currentUserRouter} from "./routes/current-user";
 import {signInRouter} from "./routes/signin";
 import {signOutRouter} from "./routes/signout";
 import {signUpRouter} from "./routes/signup";
-import {errorHandler} from "./middlewares/error-handler";
-import {NotFoundError} from "./errors/not-found-error";
+import {errorHandler, NotFoundError} from "@endritdobra/ticketing-common";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 
@@ -26,6 +25,7 @@ app.all("*", (req, res) => {
     throw new NotFoundError();
 });
 
+// @ts-ignore
 app.use(errorHandler);
 
-export { app };
+export {app};

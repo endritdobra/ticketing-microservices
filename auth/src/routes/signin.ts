@@ -1,9 +1,8 @@
 import "express-async-errors";
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from "../middlewares/validate-request";
+import {validateRequest, BadRequestError} from "@endritdobra/ticketing-common";
 import {User} from "../models/user";
-import {BadRequestError} from "../errors/bad-request-error";
 import {PasswordService} from "../services/password";
 import jwt from "jsonwebtoken";
 
@@ -13,6 +12,7 @@ router.post('/api/users/signin', [
         body("email").isEmail().withMessage("Email must be valid"),
         body("password").trim().notEmpty().withMessage("Password must be provided")
     ],
+    // @ts-ignore
     validateRequest
     , async (req: Request, res: Response) => {
         const {email, password} = req.body;

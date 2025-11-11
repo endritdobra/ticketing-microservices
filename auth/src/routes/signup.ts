@@ -1,10 +1,9 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
 import {User} from "../models/user";
-import {BadRequestError} from "../errors/bad-request-error";
+import {BadRequestError, validateRequest} from "@endritdobra/ticketing-common";
 import "express-async-errors";
 import jwt from "jsonwebtoken";
-import {validateRequest} from "../middlewares/validate-request";
 
 const router = express.Router();
 
@@ -15,6 +14,7 @@ router.post('/api/users/signup', [
             max: 20
         }).withMessage("Password must be at least 6 characters long and no more than 20")
     ],
+    // @ts-ignore
     validateRequest
     , async (req: Request, res: Response) => {
         const {email, password} = req.body;
