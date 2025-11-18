@@ -11,7 +11,7 @@ import {body} from 'express-validator';
 import {Ticket} from '../models/ticket';
 import {Order} from '../models/order';
 import {natsWrapper} from "../nats-wrapper";
-import {OrderCreatedPublisher} from "../publishers/order-created-publisher";
+import {OrderCreatedPublisher} from "../events/publishers/order-created-publisher";
 
 const router = express.Router();
 
@@ -61,7 +61,7 @@ router.post(
                 id: ticket.id,
                 price: ticket.price
             },
-            version: 1
+            version: order.version
         });
 
         res.status(201).send(order);

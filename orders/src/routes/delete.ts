@@ -5,7 +5,7 @@ import {
     NotAuthorizedError,
 } from '@rallycoding/common';
 import {Order, OrderStatus} from '../models/order';
-import {OrderCancelledPublisher} from "../publishers/order-cancelled-publisher";
+import {OrderCancelledPublisher} from "../events/publishers/order-cancelled-publisher";
 import {natsWrapper} from "../nats-wrapper";
 
 const router = express.Router();
@@ -32,7 +32,7 @@ router.delete(
             ticket: {
                 id: order.ticket.id,
             },
-            version: 1
+            version: order.version
         })
 
         res.status(204).send(order);
