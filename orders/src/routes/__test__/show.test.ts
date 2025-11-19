@@ -4,7 +4,6 @@ import {Ticket} from '../../models/ticket';
 import mongoose from "mongoose";
 
 it('fetches the order', async () => {
-    // Create a ticket
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
         title: 'concert',
@@ -19,7 +18,6 @@ it('fetches the order', async () => {
         .send({ticketId: ticket.id})
         .expect(201);
 
-    // make request to fetch the order
     const {body: fetchedOrder} = await request(app)
         .get(`/api/orders/${order.id}`)
         .set('Cookie', user)
@@ -30,7 +28,6 @@ it('fetches the order', async () => {
 });
 
 it('returns an error if one user tries to fetch another users order', async () => {
-    // Create a ticket
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
         title: 'concert',

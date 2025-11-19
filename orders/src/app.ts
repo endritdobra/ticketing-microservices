@@ -17,6 +17,7 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+// @ts-ignore
 app.use(currentUser);
 
 app.use(deleteOrderRouter);
@@ -27,7 +28,7 @@ app.use(showOrderRouter);
 app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
-
+// @ts-ignore
 app.use(errorHandler);
 
 export { app };
