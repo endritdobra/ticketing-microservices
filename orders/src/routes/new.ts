@@ -55,7 +55,7 @@ router.post('/api/orders', requireAuth,
             id: order.id,
             status: order.status,
             expiresAt: order.expiresAt.toISOString(),
-            userId: order.id,
+            userId: order.userId,
             ticket: {
                 id: ticket.id,
                 price: ticket.price
