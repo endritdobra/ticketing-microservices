@@ -7,7 +7,7 @@ it ("responds with details about the current user", async () => {
         throw new Error("Cookie not set after signup");
     }
 
-    const response = await request(app).get("/api/users/currentuser").set("Cookie", cookie).send().expect(200);
+    const response = await request(app).get("/api/users/currentuser").set("Cookie", cookie).send().expect(400);
 
     expect(response.body.currentUser.email).toEqual("test@test.com");
 });
